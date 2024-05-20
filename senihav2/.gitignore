@@ -1,0 +1,7 @@
+db.sqlite3
+logs/*
+__pycache__
+local_conf.py
+app/migrations/00*
+nodes/*
+edge/

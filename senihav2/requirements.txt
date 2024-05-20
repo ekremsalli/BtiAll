@@ -1,0 +1,2 @@
+drf-yasg
+django-cors-headers

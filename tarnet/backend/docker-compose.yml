@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./
+    command: python manage.py runserver 0.0.0.0:8000
+    entrypoint: /bin/sh entrypoint.sh 
+    volumes:
+      - ./backend
+      - ./backend/static
+    networks:
+      main:
+        aliases:
+          - web
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+    networks:
+      main:
+        aliases:
+          - web
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1905
+      - POSTGRES_DB=tarnet_db
+
+  nginx:
+    build: ./nginx
+    ports:
+        - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - ./backend/static
+    restart: always
+    networks:
+      main:
+        aliases:
+          - nginx
+    
+volumes:
+  postgres_data:
+  static:
+
+networks:
+  main:

@@ -1,0 +1,17 @@
+Django
+pytz==2020.5
+sqlparse==0.4.1
+requests
+djangorestframework==3.13.1
+markdown
+django-filter
+djangorestframework-simplejwt==4.7.0
+PyJWT
+python-dateutil
+django-cors-headers
+pyyaml
+drf-yasg
+django-rest-serializer-field-permissions==2.0
+pysftp
+psycopg2-binary
+gunicorn==20.1.0

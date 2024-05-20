@@ -1,0 +1,106 @@
+"""
+ Tüm hakları BTI Bilişim Danışmanlık ve Yazılım Şirketi adına saklıdır.
+ 
+"""
+
+from django.db import models
+from erp.active import Active
+from erp.models.base import *
+
+
+class LG_WFTASK(
+    BaseLogical,
+    BaseInfo,
+    BaseGUID,
+    models.Model):
+    code = models.CharField(db_column='CODE', unique=True, max_length=25, blank=True, null=True)
+    wfcardref = models.IntegerField(db_column='WFCARDREF', blank=True, null=True)
+    wflineref = models.IntegerField(db_column='WFLINEREF', blank=True, null=True)
+    level_field = models.SmallIntegerField(db_column='LEVEL_', blank=True, null=True)
+    taskdef = models.CharField(db_column='TASKDEF', max_length=251, blank=True, null=True)
+    begdate = models.DateTimeField(db_column='BEGDATE', blank=True, null=True)
+    begtime = models.IntegerField(db_column='BEGTIME', blank=True, null=True)
+    enddate = models.DateTimeField(db_column='ENDDATE', blank=True, null=True)
+    endtime = models.IntegerField(db_column='ENDTIME', blank=True, null=True)
+    status = models.SmallIntegerField(db_column='STATUS', blank=True, null=True)
+    completedper = models.SmallIntegerField(db_column='COMPLETEDPER', blank=True, null=True)
+    usernr = models.SmallIntegerField(db_column='USERNR', blank=True, null=True)
+    wfroleref = models.IntegerField(db_column='WFROLEREF', blank=True, null=True)
+    tasktype = models.SmallIntegerField(db_column='TASKTYPE', blank=True, null=True)
+    processtype = models.SmallIntegerField(db_column='PROCESSTYPE', blank=True, null=True)
+    pertaskref = models.IntegerField(db_column='PERTASKREF', blank=True, null=True)
+    remindcount = models.IntegerField(db_column='REMINDCOUNT', blank=True, null=True)
+    reminder = models.SmallIntegerField(db_column='REMINDER', blank=True, null=True)
+    reminddate = models.DateTimeField(db_column='REMINDDATE', blank=True, null=True)
+    remindtime = models.IntegerField(db_column='REMINDTIME', blank=True, null=True)
+    remindday = models.SmallIntegerField(db_column='REMINDDAY', blank=True, null=True)
+    remindminute = models.SmallIntegerField(db_column='REMINDMINUTE', blank=True, null=True)
+    definition_field = models.CharField(db_column='DEFINITION_', max_length=251, blank=True, null=True)
+    workplacetype = models.IntegerField(db_column='WORKPLACETYPE', blank=True, null=True)
+    recordref = models.IntegerField(db_column='RECORDREF', blank=True, null=True)
+    recordperiod = models.SmallIntegerField(db_column='RECORDPERIOD', blank=True, null=True)
+    parenttaskref = models.IntegerField(db_column='PARENTTASKREF', blank=True, null=True)
+    recordcurop = models.SmallIntegerField(db_column='RECORDCUROP', blank=True, null=True)
+    approvestat = models.SmallIntegerField(db_column='APPROVESTAT', blank=True, null=True)
+    warned = models.SmallIntegerField(db_column='WARNED', blank=True, null=True)
+    taskgrpnr = models.SmallIntegerField(db_column='TASKGRPNR', blank=True, null=True)
+    actenddate = models.DateTimeField(db_column='ACTENDDATE', blank=True, null=True)
+    actendtime = models.IntegerField(db_column='ACTENDTIME', blank=True, null=True)
+    delaystatus = models.SmallIntegerField(db_column='DELAYSTATUS', blank=True, null=True)
+    sendwarn = models.SmallIntegerField(db_column='SENDWARN', blank=True, null=True)
+    warntype = models.SmallIntegerField(db_column='WARNTYPE', blank=True, null=True)
+    warnusernr = models.SmallIntegerField(db_column='WARNUSERNR', blank=True, null=True)
+    warnroleref = models.IntegerField(db_column='WARNROLEREF', blank=True, null=True)
+    warnsended = models.SmallIntegerField(db_column='WARNSENDED', blank=True, null=True)
+    beginmailgroup = models.CharField(db_column='BEGINMAILGROUP', max_length=101, blank=True, null=True)
+    endmailgroup = models.CharField(db_column='ENDMAILGROUP', max_length=101, blank=True, null=True)
+    beginalert = models.SmallIntegerField(db_column='BEGINALERT', blank=True, null=True)
+    endalert = models.SmallIntegerField(db_column='ENDALERT', blank=True, null=True)
+    repeattype = models.SmallIntegerField(db_column='REPEATTYPE', blank=True, null=True)
+    repdate = models.IntegerField(db_column='REPDATE', blank=True, null=True)
+    reptime = models.IntegerField(db_column='REPTIME', blank=True, null=True)
+    repmonth = models.SmallIntegerField(db_column='REPMONTH', blank=True, null=True)
+    repday36 = models.SmallIntegerField(db_column='REPDAY36', blank=True, null=True)
+    repday7 = models.SmallIntegerField(db_column='REPDAY7', blank=True, null=True)
+    repday6 = models.SmallIntegerField(db_column='REPDAY6', blank=True, null=True)
+    repyearspin = models.SmallIntegerField(db_column='REPYEARSPIN', blank=True, null=True)
+    repmonthspin = models.SmallIntegerField(db_column='REPMONTHSPIN', blank=True, null=True)
+    repdayspin = models.SmallIntegerField(db_column='REPDAYSPIN', blank=True, null=True)
+    rephourspin = models.SmallIntegerField(db_column='REPHOURSPIN', blank=True, null=True)
+    repminspin = models.SmallIntegerField(db_column='REPMINSPIN', blank=True, null=True)
+    beginrepeatingtime = models.IntegerField(db_column='BEGINREPEATINGTIME', blank=True, null=True)
+    beginrepeatingdate = models.IntegerField(db_column='BEGINREPEATINGDATE', blank=True, null=True)
+    endrepeatingtype = models.SmallIntegerField(db_column='ENDREPEATINGTYPE', blank=True, null=True)
+    endrepeatingdate = models.IntegerField(db_column='ENDREPEATINGDATE', blank=True, null=True)
+    endrepeatingtime = models.IntegerField(db_column='ENDREPEATINGTIME', blank=True, null=True)
+    endrepeatingcount = models.SmallIntegerField(db_column='ENDREPEATINGCOUNT', blank=True, null=True)
+    priority = models.SmallIntegerField(db_column='PRIORITY', blank=True, null=True)
+    taskparams = models.IntegerField(db_column='TASKPARAMS', blank=True, null=True)
+    waittime = models.SmallIntegerField(db_column='WAITTIME', blank=True, null=True)
+    cardtype = models.SmallIntegerField(db_column='CARDTYPE', blank=True, null=True)
+    bmailto = models.CharField(db_column='BMAILTO', max_length=251, blank=True, null=True)
+    bmailcc = models.CharField(db_column='BMAILCC', max_length=251, blank=True, null=True)
+    bmailbcc = models.CharField(db_column='BMAILBCC', max_length=251, blank=True, null=True)
+    bmailuser = models.CharField(db_column='BMAILUSER', max_length=25, blank=True, null=True)
+    bmailrole = models.CharField(db_column='BMAILROLE', max_length=25, blank=True, null=True)
+    emailto = models.CharField(db_column='EMAILTO', max_length=251, blank=True, null=True)
+    emailcc = models.CharField(db_column='EMAILCC', max_length=251, blank=True, null=True)
+    emailbcc = models.CharField(db_column='EMAILBCC', max_length=251, blank=True, null=True)
+    emailrole = models.CharField(db_column='EMAILROLE', max_length=25, blank=True, null=True)
+    emailuser = models.CharField(db_column='EMAILUSER', max_length=25, blank=True, null=True)
+    mailtype = models.SmallIntegerField(db_column='MAILTYPE', blank=True, null=True)
+    issms = models.SmallIntegerField(db_column='ISSMS', blank=True, null=True)
+    sendmailreport = models.SmallIntegerField(db_column='SENDMAILREPORT', blank=True, null=True)
+    usesms = models.SmallIntegerField(db_column='USESMS', blank=True, null=True)
+    active = models.SmallIntegerField(db_column='ACTIVE', blank=True, null=True)
+    begtotal = models.FloatField(db_column='BEGTOTAL', blank=True, null=True)
+    endtotal = models.FloatField(db_column='ENDTOTAL', blank=True, null=True)
+    payments = models.IntegerField(db_column='PAYMENTS', blank=True, null=True)
+    arrivals = models.IntegerField(db_column='ARRIVALS', blank=True, null=True)
+    collections = models.IntegerField(db_column='COLLECTIONS', blank=True, null=True)
+    procurements = models.IntegerField(db_column='PROCUREMENTS', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = f'LG_{Active.namespace}_WFTASK'
+        target_db = 'erp'

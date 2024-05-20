@@ -1,0 +1,60 @@
+import json
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+from .base import Bti, Pagination
+#from bti.serializers.dispatch import DispatchCreateSerializer
+from bti.models.dispatch import DispatchQue, DispatchTrack
+
+#from erp.asking.dispatch import Dispatch as askDispatch
+#from erp.serializers.dispatch import DispatchSerializer
+
+class Dispatch(Bti, APIView):
+    def post(self, request, format="json"):
+        dispatch = DispatchCreateSerializer(data=request.data)
+        if dispatch.is_valid(raise_exception=True):
+            data = dispatch.data
+
+            check = DispatchTrack.control(data)
+            if check:
+                return Response(check.in_track(
+                    f'Bu irsaliye {check.fmt_created} tarihinde kayıt olmuş.'
+                ), status=status.HTTP_208_ALREADY_REPORTED)
+
+            dq_check = DispatchQue.control(data)
+            if dq_check:
+                return Response(dq_check.in_que(
+                    f'Bu irsaliye {dq_check.fmt_created} tarihinde kuyruğa eklenmiş.'
+                ), status=status.HTTP_208_ALREADY_REPORTED)
+
+            if data.get('on_time') is False:
+                dq = DispatchQue(
+                    firm=data.get('firm'),
+                    identifier=data.get('identifier'),
+                    data=json.dumps(data),
+                )
+                dq.save()
+                return Response(dq.success(
+                    'İrsaliye başarıyla kuyruğa eklendi.'
+                ))
+            else:
+                from pprint import pprint as pp
+                mdata = {k.upper() : v for k,v in data.items()}
+                pp(mdata)
+
+                #data.update({'TYPE': 1, 'NUMBER': '~'})
+                erp = DispatchSerializer(data=mdata)
+                print(erp.is_valid(raise_exception=True))
+                return
+                ask = askDispatch(data=data)
+                resp = ask.create()
+                print(ask.flow)
+                print(resp)
+
+
+
+
+
+

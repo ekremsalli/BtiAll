@@ -1,0 +1,5 @@
+include btix/third_party/bazaars/gittigidiyor/data/IndividualSaleService.wsdl
+include btix/third_party/bazaars/n11/data/OrderService.wsdl
+include btix/bti/fixtures/api_group.yaml
+include btix/bti/management/commands/set_api_user.py
+exclude btix/common/local_conf.py

@@ -1,0 +1,1161 @@
+<definitions name='IndividualSaleServiceService' targetNamespace='http://sale.individual.ws.listingapi.gg.com' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://sale.individual.ws.listingapi.gg.com' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://sale.individual.ws.listingapi.gg.com' version='1.0' xmlns:tns='http://sale.individual.ws.listingapi.gg.com' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='return' nillable='true' type='xs:anyType'/>
+   <xs:complexType name='saleServiceResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='saleCount' type='xs:int'/>
+       <xs:element minOccurs='0' name='sales'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='sale' nillable='true' type='tns:saleType'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+       <xs:element minOccurs='0' name='sellerPromotionInfos'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='sellerPromotionInfo' nillable='true' type='tns:sellerPromotionInfoType'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='baseResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='ackCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='responseTime' type='xs:string'/>
+     <xs:element minOccurs='0' name='error' type='tns:errorType'/>
+     <xs:element minOccurs='0' name='timeElapsed' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='status' type='xs:string'/>
+     <xs:element minOccurs='0' name='statusCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='productTitle' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:string'/>
+     <xs:element minOccurs='0' name='cargoPayment' type='xs:string'/>
+     <xs:element minOccurs='0' name='cargoCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='amount' type='xs:int'/>
+     <xs:element minOccurs='0' name='endDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='buyerInfo' type='tns:orderBuyerInfoType'/>
+     <xs:element minOccurs='0' name='changeStatus' type='xs:string'/>
+     <xs:element minOccurs='0' name='thumbImageLink' type='xs:string'/>
+     <xs:element minOccurs='0' name='lastActionDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='waitingProcesses'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='waitingProcess' nillable='true' type='xs:int'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='invoiceInfo' type='tns:saleInvoiceType'/>
+     <xs:element minOccurs='0' name='variantId' type='xs:long'/>
+     <xs:element minOccurs='0' name='variantSpecs'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='variantSpec' nillable='true' type='tns:itemVariantSpecType'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='moneyDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='cargoApprovementDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='itemId' type='xs:string'/>
+     <xs:element minOccurs='0' name='shippingInfo' type='tns:shippingInfoType'/>
+     <xs:element minOccurs='0' name='commissionRate' type='xs:double'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='orderBuyerInfoType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='username' type='xs:string'/>
+     <xs:element minOccurs='0' name='name' type='xs:string'/>
+     <xs:element minOccurs='0' name='surname' type='xs:string'/>
+     <xs:element minOccurs='0' name='phone' type='xs:string'/>
+     <xs:element minOccurs='0' name='mobilePhone' type='xs:string'/>
+     <xs:element minOccurs='0' name='email' type='xs:string'/>
+     <xs:element minOccurs='0' name='address' type='xs:string'/>
+     <xs:element minOccurs='0' name='district' type='xs:string'/>
+     <xs:element minOccurs='0' name='city' type='xs:string'/>
+     <xs:element minOccurs='0' name='neighborhoodType' type='tns:neighborhoodType'/>
+     <xs:element minOccurs='0' name='zipCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='processCount' type='xs:int'/>
+     <xs:element minOccurs='0' name='ratePercentage' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='neighborhoodType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='neighborhoodId' type='xs:int'/>
+     <xs:element minOccurs='0' name='neighborhoodName' type='xs:string'/>
+     <xs:element minOccurs='0' name='districtId' type='xs:int'/>
+     <xs:element minOccurs='0' name='active' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleInvoiceType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='fullname' type='xs:string'/>
+     <xs:element minOccurs='0' name='address' type='xs:string'/>
+     <xs:element minOccurs='0' name='district' type='xs:string'/>
+     <xs:element minOccurs='0' name='cityCode' type='xs:int'/>
+     <xs:element minOccurs='0' name='zipCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='phoneNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='taxOffice' type='xs:string'/>
+     <xs:element minOccurs='0' name='taxNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='companyTitle' type='xs:string'/>
+     <xs:element minOccurs='0' name='tcCertificate' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='itemVariantSpecType'>
+    <xs:sequence/>
+    <xs:attribute name='name' type='xs:string'/>
+    <xs:attribute name='value' type='xs:string'/>
+    <xs:attribute name='quantity' type='xs:int'/>
+    <xs:attribute name='soldQuantity' type='xs:int'/>
+    <xs:attribute name='stockCode' type='xs:string'/>
+   </xs:complexType>
+   <xs:complexType name='shippingInfoType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='deliveryOption' type='xs:string'/>
+     <xs:element minOccurs='0' name='shippingFirmName' type='xs:string'/>
+     <xs:element minOccurs='0' name='shippingFirmId' type='xs:int'/>
+     <xs:element minOccurs='0' name='combinedShipping' type='xs:string'/>
+     <xs:element minOccurs='0' name='shippingPaymentType' type='tns:shippingPaymentType'/>
+     <xs:element minOccurs='0' name='cargoCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='shippingNotice' type='xs:string'/>
+     <xs:element minOccurs='0' name='combinedSaleCodes'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='saleCode' type='xs:string'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='shippingExpireDate' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='sellerPromotionInfoType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='sales'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='sale' nillable='true' type='tns:saleType'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='saleSellerPromotions'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='saleSellerPromotion' nillable='true' type='tns:saleSellerPromotionType'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleSellerPromotionType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='discountedPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='productUrl' type='xs:string'/>
+     <xs:element minOccurs='0' name='title' type='xs:string'/>
+     <xs:element minOccurs='0' name='quantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='retailVariantId' type='xs:int'/>
+     <xs:element minOccurs='0' name='saleSellerPromotionId' type='xs:int'/>
+     <xs:element minOccurs='0' name='sellerPromotion' type='tns:sellerPromotion'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='sellerPromotion'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='basketLimit' type='xs:int'/>
+     <xs:element minOccurs='0' name='endDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='giftInfo' type='tns:giftInfoType'/>
+     <xs:element minOccurs='0' name='giftQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='insertedAt' type='xs:dateTime'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='items' nillable='true' type='tns:sellerPromotionItem'/>
+     <xs:element minOccurs='0' name='mainProductQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='name' type='xs:string'/>
+     <xs:element minOccurs='0' name='selectedGiftVariantId' type='xs:int'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='sellerIds' nillable='true' type='xs:int'/>
+     <xs:element minOccurs='0' name='sellerPromotionType' type='tns:sellerPromotionType'/>
+     <xs:element minOccurs='0' name='startDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='status' type='tns:sellerPromotionStatusType'/>
+     <xs:element minOccurs='0' name='updatedAt' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='usageLimit' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='giftInfoType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='appliesTo' type='tns:appliesTo'/>
+     <xs:element minOccurs='0' name='type' type='tns:type'/>
+     <xs:element minOccurs='0' name='value' type='xs:decimal'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='sellerPromotionItem'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='itemId' type='xs:string'/>
+     <xs:element minOccurs='0' name='mainProducts'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='mainProduct' type='tns:mainProductInfoDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='gifts'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='gift' type='tns:giftProductInfoDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='mainProductInfoDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='quantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='retailVariantId' type='xs:long'/>
+     <xs:element minOccurs='0' name='title' type='xs:string'/>
+     <xs:element minOccurs='0' name='images'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='image' type='tns:imageDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='startDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='endDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='stockQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='productUrl' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='imageDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='imageId' type='xs:int'/>
+     <xs:element minOccurs='0' name='imageUrls'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='imageUrl' type='tns:imageUrlDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='zoomInSupport' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='imageUrlDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='imageUrl' type='xs:string'/>
+     <xs:element minOccurs='0' name='size' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='giftProductInfoDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='retailVariantId' type='xs:long'/>
+     <xs:element minOccurs='0' name='retailVariant' type='tns:variantDto'/>
+     <xs:element minOccurs='0' name='type' type='tns:giftPromotionType'/>
+     <xs:element minOccurs='0' name='value' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='title' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='images' type='tns:imageDto'/>
+     <xs:element minOccurs='0' name='startDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='endDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='stockQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='productUrl' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='possibleGiftVariants' type='tns:variantDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='variantDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='image' type='tns:imageDto'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='quantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='soldQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='specs'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='spec' type='tns:variantSpecDto'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+     <xs:element minOccurs='0' name='stockCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='variantId' type='xs:long'/>
+     <xs:element minOccurs='0' name='catalog' type='tns:productCatalogDto'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='variantSpecDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='soldQuantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='quantity' type='xs:int'/>
+     <xs:element minOccurs='0' name='name' type='xs:string'/>
+     <xs:element minOccurs='0' name='value' type='xs:string'/>
+     <xs:element minOccurs='0' name='stockCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='order' type='xs:int'/>
+     <xs:element minOccurs='0' name='specDataId' type='xs:int'/>
+     <xs:element minOccurs='0' name='specId' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='productCatalogDto'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='newCatalogId' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='errorType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='errorId' type='xs:string'/>
+     <xs:element minOccurs='0' name='errorCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='message' type='xs:string'/>
+     <xs:element minOccurs='0' name='viewMessage' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleServicePagingResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:saleServiceResponse'>
+      <xs:sequence>
+       <xs:element name='nextPageAvailable' type='xs:boolean'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleServiceBuyerResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element minOccurs='0' name='count' type='xs:int'/>
+       <xs:element minOccurs='0' name='itemBuyers'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='itemBuyer' nillable='true' type='tns:saleBuyerType'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleBuyerType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='nick' type='xs:string'/>
+     <xs:element minOccurs='0' name='saleCount' type='xs:long'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='commonSaleResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence/>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleProcessReportResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='sales' nillable='true' type='tns:saleProcessType'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleProcessType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='dailyOfferCommissionRevenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='dailyOfferCommissionRevenueVatAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='dailyOfferCommissionRevenueVatBasis' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggCommissionRevenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggCommissionRevenueVatAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggCommissionRevenueVatBasis' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggRevenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='installmentRevenueVatAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='installmentRevenueVatBasis' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paidAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paymentChannel' type='tns:orderTransactionChannelType'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='saleDiscountAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='sellerAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='sellerBalance' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='srsCompleteTime' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='totalMerchantCommissionCost' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='transferStatus' type='tns:srsProcessTransferStatusType'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleProcessReportV2Response'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element maxOccurs='unbounded' minOccurs='0' name='sales' nillable='true' type='tns:saleProcessTypeV2'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleProcessTypeV2'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='commissions' nillable='true' type='tns:srsProcessFvfCommissionType'/>
+     <xs:element minOccurs='0' name='ggRevenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='installmentRevenueVatAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='installmentRevenueVatBasis' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paidAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paymentChannel' type='tns:orderTransactionChannelType'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='saleDiscountAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='sellerAmount' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='sellerBalance' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='srsCompleteTime' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='totalMerchantCommissionCost' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='transferStatus' type='tns:srsProcessTransferStatusType'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='srsProcessFvfCommissionType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='revenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='rate' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='fvfCommissionTypeDescription' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='messageServiceResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='result' type='xs:string'/>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionListResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element minOccurs='0' name='sales'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='sale' nillable='true' type='tns:accountTransactionType'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='productTitle' type='xs:string'/>
+     <xs:element minOccurs='0' name='buyerNick' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggCommission' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='commissionPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paidPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='approveDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='approve' type='xs:string'/>
+     <xs:element minOccurs='0' name='accountNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='iban' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionListV2Response'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element minOccurs='0' name='sales'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='sale' nillable='true' type='tns:accountTransactionV2Type'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionV2Type'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='productTitle' type='xs:string'/>
+     <xs:element minOccurs='0' name='buyerNick' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='commissionPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='ggCommission' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='dailyOfferCommission' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paidPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='approveDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='approve' type='xs:string'/>
+     <xs:element minOccurs='0' name='accountNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='iban' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionListV3Response'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='totalCount' type='xs:int'/>
+       <xs:element minOccurs='0' name='sales'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='sale' nillable='true' type='tns:accountTransactionV3Type'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionV3Type'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='saleCode' type='xs:string'/>
+     <xs:element minOccurs='0' name='productId' type='xs:int'/>
+     <xs:element minOccurs='0' name='productTitle' type='xs:string'/>
+     <xs:element minOccurs='0' name='buyerNick' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='paidPrice' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='approveDate' type='xs:string'/>
+     <xs:element minOccurs='0' name='approve' type='xs:string'/>
+     <xs:element minOccurs='0' name='accountNumber' type='xs:string'/>
+     <xs:element minOccurs='0' name='iban' type='xs:string'/>
+     <xs:element minOccurs='0' name='commissions'>
+      <xs:complexType>
+       <xs:sequence>
+        <xs:element maxOccurs='unbounded' minOccurs='0' name='commission' nillable='true' type='tns:accountTransactionFvfCommissionType'/>
+       </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='accountTransactionFvfCommissionType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='revenue' type='xs:decimal'/>
+     <xs:element minOccurs='0' name='commissionType' type='xs:string'/>
+     <xs:element minOccurs='0' name='rate' type='xs:decimal'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='saleServiceCancelReasonResponse'>
+    <xs:complexContent>
+     <xs:extension base='tns:baseResponse'>
+      <xs:sequence>
+       <xs:element minOccurs='0' name='count' type='xs:int'/>
+       <xs:element minOccurs='0' name='reasons'>
+        <xs:complexType>
+         <xs:sequence>
+          <xs:element maxOccurs='unbounded' minOccurs='0' name='reason' nillable='true' type='tns:saleReasonType'/>
+         </xs:sequence>
+        </xs:complexType>
+       </xs:element>
+      </xs:sequence>
+     </xs:extension>
+    </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name='saleReasonType'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='value' type='xs:string'/>
+    </xs:sequence>
+    <xs:attribute name='id' type='xs:int'/>
+   </xs:complexType>
+   <xs:simpleType name='shippingPaymentType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='BUYER'/>
+     <xs:enumeration value='SELLER'/>
+     <xs:enumeration value='PAY_IN_THE_BASKET'/>
+     <xs:enumeration value='PLATFORM'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='appliesTo'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='TOTAL'/>
+     <xs:enumeration value='GIFT'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='type'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='COUNT'/>
+     <xs:enumeration value='PERCENTAGE'/>
+     <xs:enumeration value='PRICE'/>
+     <xs:enumeration value='FIXED_PRICE'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='giftPromotionType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='COUNT'/>
+     <xs:enumeration value='PERCENTAGE'/>
+     <xs:enumeration value='PRICE'/>
+     <xs:enumeration value='FIXED_PRICE'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='sellerPromotionType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='SAME_PRODUCT'/>
+     <xs:enumeration value='DIFFERENT_PRODUCT'/>
+     <xs:enumeration value='SAME_OR_DIFFERENT_PRODUCT'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='sellerPromotionStatusType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='ACTIVE'/>
+     <xs:enumeration value='PASSIVE'/>
+     <xs:enumeration value='DRAFT'/>
+     <xs:enumeration value='PLANNED'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='orderTransactionChannelType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='POS'/>
+     <xs:enumeration value='PAYPAL'/>
+     <xs:enumeration value='BKM_EXPRESS'/>
+     <xs:enumeration value='GARANTI_PAY'/>
+     <xs:enumeration value='MOBIL_EXPRESS'/>
+    </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name='srsProcessTransferStatusType'>
+    <xs:restriction base='xs:string'>
+     <xs:enumeration value='PENDING'/>
+     <xs:enumeration value='COMPLETED'/>
+    </xs:restriction>
+   </xs:simpleType>
+  </xs:schema>
+ </types>
+ <message name='IndividualSaleService_remindForApproval'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_giveRateAndComment'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='userType' type='xsd:string'></part>
+  <part name='productId' type='xsd:int'></part>
+  <part name='rate' type='xsd:int'></part>
+  <part name='comment' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactionsV3'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_receiveRemandedItem'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactionsV2'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getPagedSalesByDateRangeResponse'>
+  <part name='return' type='tns:saleServicePagingResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSalesResponse'>
+  <part name='return' type='tns:saleServicePagingResponse'></part>
+ </message>
+ <message name='IndividualSaleService_cancelSaleResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_cancelSaleAfterEarlyCancellationRequestResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactionsV3Response'>
+  <part name='return' type='tns:accountTransactionListV3Response'></part>
+ </message>
+ <message name='IndividualSaleService_getSaleProcessReportResponse'>
+  <part name='return' type='tns:saleProcessReportResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getServiceNameResponse'>
+  <part name='return' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_cancelSale'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='reasonId' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactionsV2Response'>
+  <part name='return' type='tns:accountTransactionListV2Response'></part>
+ </message>
+ <message name='IndividualSaleService_getSaleProcessReportV2Response'>
+  <part name='return' type='tns:saleProcessReportV2Response'></part>
+ </message>
+ <message name='IndividualSaleService_removeSaleFromListResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_giveApprovalForRemandedItemResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSaleProcessReport'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_removeSaleFromList'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='userType' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactionsResponse'>
+  <part name='return' type='tns:accountTransactionListResponse'></part>
+ </message>
+ <message name='IndividualSaleService_cancelSaleAfterEarlyCancellationRequest'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_remindForApprovalResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_giveRateAndCommentResponse'>
+  <part name='return' type='tns:commonSaleResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getItemBuyers'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='byStatus' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getReasonsToCancelSale'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getPagedSalesResponse'>
+  <part name='return' type='tns:saleServicePagingResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSaleResponse'>
+  <part name='return' type='tns:saleServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getItemBuyersResponse'>
+  <part name='return' type='tns:saleServiceBuyerResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSalesByDateRange'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='withData' type='xsd:boolean'></part>
+  <part name='byStatus' type='xsd:string'></part>
+  <part name='byUser' type='xsd:string'></part>
+  <part name='orderBy' type='xsd:string'></part>
+  <part name='orderType' type='xsd:string'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='pageNumber' type='xsd:int'></part>
+  <part name='pageSize' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getPagedSales'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='withData' type='xsd:boolean'></part>
+  <part name='byStatus' type='xsd:string'></part>
+  <part name='byUser' type='xsd:string'></part>
+  <part name='orderBy' type='xsd:string'></part>
+  <part name='orderType' type='xsd:string'></part>
+  <part name='pageNumber' type='xsd:int'></part>
+  <part name='pageSize' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_receiveRemandedItemResponse'>
+  <part name='return' type='tns:messageServiceResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSalesByDateRangeResponse'>
+  <part name='return' type='tns:saleServicePagingResponse'></part>
+ </message>
+ <message name='IndividualSaleService_getSale'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_giveApprovalForRemandedItem'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='saleCode' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getSales'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='withData' type='xsd:boolean'></part>
+  <part name='byStatus' type='xsd:string'></part>
+  <part name='byUser' type='xsd:string'></part>
+  <part name='orderBy' type='xsd:string'></part>
+  <part name='orderType' type='xsd:string'></part>
+  <part name='pageNumber' type='xsd:int'></part>
+  <part name='pageSize' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getAccountTransactions'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getPagedSalesByDateRange'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='withData' type='xsd:boolean'></part>
+  <part name='byStatus' type='xsd:string'></part>
+  <part name='byUser' type='xsd:string'></part>
+  <part name='orderBy' type='xsd:string'></part>
+  <part name='orderType' type='xsd:string'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='pageNumber' type='xsd:int'></part>
+  <part name='pageSize' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_replySaleCommentResponse'>
+  <part name='return' type='tns:commonSaleResponse'></part>
+ </message>
+ <message name='IndividualSaleService_replySaleComment'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='userType' type='xsd:string'></part>
+  <part name='productId' type='xsd:int'></part>
+  <part name='comment' type='xsd:string'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getSaleProcessReportV2'>
+  <part name='apiKey' type='xsd:string'></part>
+  <part name='sign' type='xsd:string'></part>
+  <part name='time' type='xsd:long'></part>
+  <part name='startDate' type='xsd:string'></part>
+  <part name='endDate' type='xsd:string'></part>
+  <part name='startOffSet' type='xsd:int'></part>
+  <part name='rowCount' type='xsd:int'></part>
+  <part name='lang' type='xsd:string'></part>
+ </message>
+ <message name='IndividualSaleService_getServiceName'></message>
+ <message name='IndividualSaleService_getReasonsToCancelSaleResponse'>
+  <part name='return' type='tns:saleServiceCancelReasonResponse'></part>
+ </message>
+ <portType name='IndividualSaleService'>
+  <operation name='cancelSale' parameterOrder='apiKey sign time saleCode reasonId lang'>
+   <input message='tns:IndividualSaleService_cancelSale'></input>
+   <output message='tns:IndividualSaleService_cancelSaleResponse'></output>
+  </operation>
+  <operation name='cancelSaleAfterEarlyCancellationRequest' parameterOrder='apiKey sign time saleCode lang'>
+   <input message='tns:IndividualSaleService_cancelSaleAfterEarlyCancellationRequest'></input>
+   <output message='tns:IndividualSaleService_cancelSaleAfterEarlyCancellationRequestResponse'></output>
+  </operation>
+  <operation name='getAccountTransactions' parameterOrder='apiKey sign time startDate endDate startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getAccountTransactions'></input>
+   <output message='tns:IndividualSaleService_getAccountTransactionsResponse'></output>
+  </operation>
+  <operation name='getAccountTransactionsV2' parameterOrder='apiKey sign time startDate endDate startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getAccountTransactionsV2'></input>
+   <output message='tns:IndividualSaleService_getAccountTransactionsV2Response'></output>
+  </operation>
+  <operation name='getAccountTransactionsV3' parameterOrder='apiKey sign time startDate endDate startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getAccountTransactionsV3'></input>
+   <output message='tns:IndividualSaleService_getAccountTransactionsV3Response'></output>
+  </operation>
+  <operation name='getItemBuyers' parameterOrder='apiKey sign time byStatus startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getItemBuyers'></input>
+   <output message='tns:IndividualSaleService_getItemBuyersResponse'></output>
+  </operation>
+  <operation name='getPagedSales' parameterOrder='apiKey sign time withData byStatus byUser orderBy orderType pageNumber pageSize lang'>
+   <input message='tns:IndividualSaleService_getPagedSales'></input>
+   <output message='tns:IndividualSaleService_getPagedSalesResponse'></output>
+  </operation>
+  <operation name='getPagedSalesByDateRange' parameterOrder='apiKey sign time withData byStatus byUser orderBy orderType startDate endDate pageNumber pageSize lang'>
+   <input message='tns:IndividualSaleService_getPagedSalesByDateRange'></input>
+   <output message='tns:IndividualSaleService_getPagedSalesByDateRangeResponse'></output>
+  </operation>
+  <operation name='getReasonsToCancelSale' parameterOrder='apiKey sign time lang'>
+   <input message='tns:IndividualSaleService_getReasonsToCancelSale'></input>
+   <output message='tns:IndividualSaleService_getReasonsToCancelSaleResponse'></output>
+  </operation>
+  <operation name='getSale' parameterOrder='apiKey sign time saleCode lang'>
+   <input message='tns:IndividualSaleService_getSale'></input>
+   <output message='tns:IndividualSaleService_getSaleResponse'></output>
+  </operation>
+  <operation name='getSaleProcessReport' parameterOrder='apiKey sign time startDate endDate startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getSaleProcessReport'></input>
+   <output message='tns:IndividualSaleService_getSaleProcessReportResponse'></output>
+  </operation>
+  <operation name='getSaleProcessReportV2' parameterOrder='apiKey sign time startDate endDate startOffSet rowCount lang'>
+   <input message='tns:IndividualSaleService_getSaleProcessReportV2'></input>
+   <output message='tns:IndividualSaleService_getSaleProcessReportV2Response'></output>
+  </operation>
+  <operation name='getSales' parameterOrder='apiKey sign time withData byStatus byUser orderBy orderType pageNumber pageSize lang'>
+   <input message='tns:IndividualSaleService_getSales'></input>
+   <output message='tns:IndividualSaleService_getSalesResponse'></output>
+  </operation>
+  <operation name='getSalesByDateRange' parameterOrder='apiKey sign time withData byStatus byUser orderBy orderType startDate endDate pageNumber pageSize lang'>
+   <input message='tns:IndividualSaleService_getSalesByDateRange'></input>
+   <output message='tns:IndividualSaleService_getSalesByDateRangeResponse'></output>
+  </operation>
+  <operation name='getServiceName'>
+   <input message='tns:IndividualSaleService_getServiceName'></input>
+   <output message='tns:IndividualSaleService_getServiceNameResponse'></output>
+  </operation>
+  <operation name='giveApprovalForRemandedItem' parameterOrder='apiKey sign time saleCode lang'>
+   <input message='tns:IndividualSaleService_giveApprovalForRemandedItem'></input>
+   <output message='tns:IndividualSaleService_giveApprovalForRemandedItemResponse'></output>
+  </operation>
+  <operation name='giveRateAndComment' parameterOrder='apiKey sign time userType productId rate comment lang'>
+   <input message='tns:IndividualSaleService_giveRateAndComment'></input>
+   <output message='tns:IndividualSaleService_giveRateAndCommentResponse'></output>
+  </operation>
+  <operation name='receiveRemandedItem' parameterOrder='apiKey sign time saleCode lang'>
+   <input message='tns:IndividualSaleService_receiveRemandedItem'></input>
+   <output message='tns:IndividualSaleService_receiveRemandedItemResponse'></output>
+  </operation>
+  <operation name='remindForApproval' parameterOrder='apiKey sign time saleCode lang'>
+   <input message='tns:IndividualSaleService_remindForApproval'></input>
+   <output message='tns:IndividualSaleService_remindForApprovalResponse'></output>
+  </operation>
+  <operation name='removeSaleFromList' parameterOrder='apiKey sign time saleCode userType lang'>
+   <input message='tns:IndividualSaleService_removeSaleFromList'></input>
+   <output message='tns:IndividualSaleService_removeSaleFromListResponse'></output>
+  </operation>
+  <operation name='replySaleComment' parameterOrder='apiKey sign time userType productId comment lang'>
+   <input message='tns:IndividualSaleService_replySaleComment'></input>
+   <output message='tns:IndividualSaleService_replySaleCommentResponse'></output>
+  </operation>
+ </portType>
+ <binding name='IndividualSaleServiceBinding' type='tns:IndividualSaleService'>
+  <soap:binding style='rpc' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='cancelSale'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='cancelSaleAfterEarlyCancellationRequest'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getAccountTransactions'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getAccountTransactionsV2'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getAccountTransactionsV3'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getItemBuyers'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getPagedSales'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getPagedSalesByDateRange'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getReasonsToCancelSale'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getSale'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getSaleProcessReport'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getSaleProcessReportV2'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getSales'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getSalesByDateRange'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='getServiceName'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='giveApprovalForRemandedItem'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='giveRateAndComment'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='receiveRemandedItem'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='remindForApproval'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='removeSaleFromList'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+  <operation name='replySaleComment'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </input>
+   <output>
+    <soap:body namespace='http://sale.individual.ws.listingapi.gg.com' use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='IndividualSaleServiceService'>
+  <port binding='tns:IndividualSaleServiceBinding' name='IndividualSaleServicePort'>
+   <soap:address location='http://dev.gittigidiyor.com:8080/listingapi/ws/IndividualSaleService'/>
+  </port>
+ </service>
+</definitions>

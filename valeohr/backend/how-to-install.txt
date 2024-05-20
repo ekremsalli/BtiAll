@@ -1,0 +1,74 @@
+Download and install Git (https://git-scm.com/downloads)
+Run Git Gui, Select Help-> Show ssh key (Generate ssh key) and share public key with us.
+
+Clone project for test
+$ git clone https://gitlab.com/emrah.bti/valeohr.git app_test
+
+Clone project for production
+$ git clone https://gitlab.com/emrah.bti/valeohr.git app
+
+Install docker compose via following link https://docs.docker.com/compose/install/
+After installation, execute command prompt (run->cmd)
+Navigate project directory
+$ cd app_test\backend
+
+Create local_conf under common directory (common\local_conf.py) with following content
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'geco1': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'wtimserv',
+        'USER': 'wtime',
+        'PASSWORD': 'geco',
+        'HOST': '10.251.4.60',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server'
+        }
+    }
+}
+
+Build image
+$ docker-compose build
+
+Run instance
+$ docker-compose up -d
+
+# Building Production 
+Navigate project directory
+$ cd app\backend
+Create local_conf under common directory (common\local_conf.py) with following content
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'wtimserv',
+        'USER': 's-ISC-DUL9-TRHR2',
+        'PASSWORD': 'ElF_3divEYdf9uD',
+        'HOST': 'dul9-sv05490.cq01pctggqgy.eu-west-1.rds.amazonaws.com',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server'
+        }
+    }
+    'geco1': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'wtimserv',
+        'USER': 'wtime',
+        'PASSWORD': 'geco',
+        'HOST': '10.251.4.60',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server'
+        }
+    }
+}
+
+Build image
+$ docker-compose -f docker-compose.prod.yml build
+
+Run instance
+$ docker-compose -f docker-compose.prod.yml  up -d
+

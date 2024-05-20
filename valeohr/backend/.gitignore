@@ -1,0 +1,10 @@
+app/migrations/0*
+logs/
+geco/migrations/0*
+geco/ins
+common/settings.py.bak
+common/urls.py.bak
+web.config
+web.config.bak
+ui/src/boot/axios.js.bak
+ui/src/boot/service.js.bak

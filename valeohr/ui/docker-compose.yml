@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      target: 'develop-stage'
+    command: /bin/sh -c 'yarn && quasar dev'
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 8585:8585

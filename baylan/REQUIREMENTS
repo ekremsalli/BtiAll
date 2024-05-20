@@ -1,0 +1,12 @@
+lib/btix-0.0.2.tar.gz
+lib/mssql-django-1.1.3.tar.gz
+drf-yasg
+django-cors-headers
+gunicorn
+whitenoise
+django-rest-serializer-field-permissions==2.0
+jsonpickle
+django-url-filter
+drf-flex-fields
+djangorestframework>=3.13.1,!=3.14.0
+

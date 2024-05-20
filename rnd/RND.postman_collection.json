@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "3feae936-8a06-430f-84fa-8b9983c5d0d5",
+		"name": "RND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetDispatches",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}app/v1/dispatch?startDocNoWith=INT2021000000001&warehouse=701",
+					"host": [
+						"{{base_url}}app"
+					],
+					"path": [
+						"v1",
+						"dispatch"
+					],
+					"query": [
+						{
+							"key": "startDocNoWith",
+							"value": "INT2021000000001"
+						},
+						{
+							"key": "warehouse",
+							"value": "701"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDispatch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}app/v1/dispatch/{{DocNo}}/{{warehouse}}",
+					"host": [
+						"{{base_url}}app"
+					],
+					"path": [
+						"v1",
+						"dispatch",
+						"{{DocNo}}",
+						"{{warehouse}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate access token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.test(\"Test access token data of the response\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"    pm.expect(jsonData.access).to.be.a(\"string\");",
+							"    pm.collectionVariables.set(\"access_token\", jsonData.access);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}token",
+					"host": [
+						"{{base_url}}token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create invoice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"InvoiceNo\": \"HML2022000039311\",\n    \"DateTime\": \"2022-04-26T15:00:00.000\",\n    \"DocumentNo\": \"HML-123457\",\n    \"ARP_CODE\": \"T-HML-3345\",\n    \"Payments\": \"P45\",\n    \"AuxilCode\": \"34TR7\",\n    \"Warehouse\": 0,\n    \"EArchiveInfo\": {\n        \"SendingType\": 1,\n        \"EArchiveType\": 2,\n        \"PaymentMethod\": 0,\n        \"PaymentDate\": \"2022-04-22T15:00:02.000\",\n        \"PayingAgent\": \"Trendyol\",\n        \"InstallationNumber\": 0,\n        \"WebAddress\": \"https://shop.hummel.com.tr/\"\n    },\n    \"Dispatches\": [\n        \"0000000860\",\n        \"0000000861\"\n    ],\n    \"Lines\": [\n        {\n            \"LineType\": 4,\n            \"Code\": \"KARGO\",\n            \"Quantity\": 1,\n            \"UnitPrice\": 100.00,\n            \"VAT\": 18\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}app/v1/invoice",
+					"host": [
+						"{{base_url}}app"
+					],
+					"path": [
+						"v1",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}app/v1/invoice/detail?DocumentNo=INT2021000000001",
+					"host": [
+						"{{base_url}}app"
+					],
+					"path": [
+						"v1",
+						"invoice",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "DocumentNo",
+							"value": "INT2021000000001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice PDF",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}app/v1/invoice/pdf?DocumentNo=INT2021000000001",
+					"host": [
+						"{{base_url}}app"
+					],
+					"path": [
+						"v1",
+						"invoice",
+						"pdf"
+					],
+					"query": [
+						{
+							"key": "DocumentNo",
+							"value": "INT2021000000001"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/"
+		},
+		{
+			"key": "username",
+			"value": "bti-test"
+		},
+		{
+			"key": "password",
+			"value": "12345"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "DocNo",
+			"value": ""
+		},
+		{
+			"key": "warehouse",
+			"value": ""
+		}
+	]
+}

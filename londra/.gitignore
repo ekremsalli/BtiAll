@@ -1,0 +1,8 @@
+logs/
+db.sqlite3
+__pycache__/
+*.py[cod]
+common/local_conf.py
+env
+web.config
+data/

@@ -1,0 +1,21 @@
+- model: robotpos.paymentblacklist
+  pk: 1
+  fields:
+    branch: null
+    payment: CARİ FATURA
+- model: robotpos.paymentmap
+  pk: 2
+  fields:
+    branch: null
+    payment: CREDIT CARD
+    account_code: '100.10.001'
+    custom_field1: '100.001.10.01'
+    custom_field2: '181.20.001'
+- model: robotpos.paymentmap
+  pk: 3
+  fields:
+    branch: null
+    payment: CASH
+    account_code: '100.10.001'
+    custom_field1: '100.001.10.01'
+    custom_field2: '181.20.001'
